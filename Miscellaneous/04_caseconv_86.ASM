@@ -1,0 +1,31 @@
+;Case conversion
+
+ASSUME CS:CODE,DS:data
+
+data SEGMENT
+	COUNT equ 10h
+data ends
+
+CODE SEGMENT
+	START:MOV AX,data
+	MOV DS,AX
+	MOV CX,COUNT	
+L1:	MOV AH,1 	
+	INT 21H 	
+
+	CMP AL,60H
+	JNC UPPER
+	ADD AL,20H
+	JMP SKIP
+
+UPPER:	SUB AL,20H 	
+
+SKIP:	MOV AH,2 	
+	MOV DL,AL 	
+	INT 21H 	
+	LOOP L1 	
+
+	MOV AH,4CH
+	INT 21H
+CODE ENDS
+end start

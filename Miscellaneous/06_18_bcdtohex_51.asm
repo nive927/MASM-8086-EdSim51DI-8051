@@ -1,0 +1,16 @@
+MOV R0, #12H
+MOV A, R0
+ANL A, #0F0H	
+SWAP A		
+		
+MOV B, #0AH
+MUL AB		
+MOV R1, A
+
+MOV A, R0	
+ANL A, #0FH	
+ADD A, R1
+
+MOV R1, A
+
+HERE: SJMP HERE
